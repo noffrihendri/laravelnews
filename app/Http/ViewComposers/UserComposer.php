@@ -15,6 +15,10 @@ class UserComposer
     public function compose(View $view)
     {
 
+        $currentURL = \Request::path();
+
+        //dd($currentURL);
+
       //  dd(Auth::user());
         $menu = new Menu();
         $resutListModul = $menu->module(Auth::user()->role);
@@ -33,9 +37,10 @@ class UserComposer
 
         $treeviewdata = new treeviewdata();
         $lastmodule = $treeviewdata->ArrangeModuleTreeData(0, $arrLstTemp);
-       // dd("coba");
+        //dd($lastmodule);
         //$data['lstModule'] = $lastmodule;
         //view()->share('lstModule', $lastmodule);
+        $view->with('isactive', $currentURL);
         $view->with('lstModule', $lastmodule);
     }
 
