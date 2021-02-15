@@ -10,7 +10,7 @@ class converter
 		if (is_object($d)) {
 			$d = get_object_vars($d);
 		}
-     //   echo "<pre> coba cob"; print_r($d); echo "</pre>";
+       //echo "<pre> coba cob"; print_r($d); echo "</pre>"; die();
 		if (is_array($d)) {
            // echo "<pre> coba cob"; print_r($d); echo "</pre>";
 			return array_map(null, $d);

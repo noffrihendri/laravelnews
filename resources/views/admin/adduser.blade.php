@@ -85,7 +85,7 @@
                 <div class="form-group row">
                     <label for="colFormLabel" class="col-sm-2 col-form-label">Profile</label>
                     <div class="col-sm-6">
-                      <input type="file" name="image" class="form-control"  id="images" required
+                      <input type="file" name="image" class="form-control"  id="images" 
                       value="{{ isset($user->image) ? $user->image :'' }}"
                       >
                     </div>

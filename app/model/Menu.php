@@ -8,6 +8,20 @@ use Illuminate\Support\Facades\DB;
 class Menu extends Model
 {
     protected $table = 'menu';
+    
+    protected $fillable = [
+        'title', 'link', 'icon','parentid','created_by','updated_by'
+    ];
+
+    protected $primaryKey = 'menu_id';
+    // protected $primarykey = 'role_id';
+
+
+    protected $casts = [
+        'created_at' => 'datetime',
+    ];
+
+    public $timestamps = true;
 
 
 

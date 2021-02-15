@@ -56,6 +56,19 @@ Route::group(['middleware' => ['auth','Checkroles:admin'] ], function () {
     Route::get('/delgroup/{id}', 'Module@destroy');
     Route::post('/savegroup', 'Module@savegroup');
 
+
+    Route::get('/listmodule', 'MenuController@index');
+    Route::get('/moduledata', 'MenuController@listdata');
+    Route::post('/savemodule', 'MenuController@store');
+    Route::get('/delmodule/{id}', 'MenuController@destroy');
+    Route::get('/editmodule/{id}', 'MenuController@edit');
+
+    Route::get('/addnews', 'NewsController@index');
+    Route::post('/addnews', 'NewsController@store');
+    Route::get('/listnews', 'NewsController@listnews');
+    Route::get('/newsdata', 'NewsController@newsdata');
+    Route::get('/editnews/{id}', 'NewsController@edit');
+    Route::get('/delnews/{id}', 'NewsController@destroy');
 });
 
 
@@ -72,3 +85,6 @@ Route::get('auth/google/callback', 'GoogleController@handleGoogleCallback');
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::post('/vue/login', 'Vue\Authvue@login');

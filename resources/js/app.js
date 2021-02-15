@@ -34,20 +34,47 @@
 
 //window.Vue = require('vue');
 
-
+ require('./bootstrap');
 import './bootstrap'
 import Vue from 'vue'
-//import App from './components/ExampleComponent'
-import App from './components/camera'
+import Exampele from './components/ExampleComponent'
+import Camera from './components/camera'
+import App from './components/App'
+import Navbar from './components/navbar'
 
 import VueQrcodeReader from "vue-qrcode-reader";
 import { StreamBarcodeReader } from "vue-barcode-reader";
+// import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
+
+import router from './router';
+
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+import 'bootstrap/dist/css/bootstrap.min.css'
+// import 'bootstrap/dist/bootstrap.min.js'
+
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+Vue.use(VueAxios, axios)
+
+
+// Vue.use(BootstrapVue);
+// Vue.use(BootstrapVueIcons);
+
+
+import VueRouter from 'vue-router';
+Vue.use(VueRouter);
 
 Vue.use(VueQrcodeReader);
 Vue.component('vue-qr-code-reader', VueQrcodeReader);
- 
-const vm = new Vue({
+
+Vue.component('Navbar', Navbar);
+
+
+const app = new Vue({
     el: '#app',
-     render: h => h(App),
+    router,
+    render: h => h(App),
     
 })

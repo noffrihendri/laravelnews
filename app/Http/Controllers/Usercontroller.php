@@ -140,17 +140,29 @@ class Usercontroller extends Controller
         $validatedData = $request->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'password' => 'required|min:6',
             'password_confirmation' => 'required_with:password|same:password|min:6'
         ]);
 
-        $pathimg = $this->addimgavatar($request);
+        if($request->file('image')){
+                $imageloader = new imageloader();
+                $imgpath = "profil";
+                $pathimage = $imageloader->saveimg($request, $imgpath);
+                $pathimg = $pathimage;
+        }
+ 
+
+        
+
         $user = User::find($id);
+
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
-        $user->image = $pathimg;
+        if($request->file('image')){
+            $user->image = $pathimg;
+        }
+        
         $user->role = $request->role;
         $user->updated_at = date("Y-m-d h:i:s");
 
