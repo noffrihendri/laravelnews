@@ -13,7 +13,7 @@ class RoleMenu extends Migration
      */
     public function up()
     {
-        Schema::create('role_menu', function (Blueprint $table) {
+        Schema::create('auth_menu_role', function (Blueprint $table) {
             $table->id();
             $table->string('id_role',2);
             $table->string('id_menu', 1);

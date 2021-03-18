@@ -3,6 +3,7 @@
 namespace App\model;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Mnews extends Model
 {
@@ -22,4 +23,18 @@ class Mnews extends Model
 
     public $timestamps = true;
 
+
+    public function news_recomendasi($wherein)
+    {
+        $sql = " SELECT * FROM `news` 
+        where news_id in (
+            select news_id from news_tag where tag in ('$wherein')
+            group by news_id 
+        )
+        order by created_at desc
+        LIMIT 3
+        ";
+    
+        return DB::select($sql);
+    }
 }

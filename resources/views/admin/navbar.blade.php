@@ -2,6 +2,12 @@
 @extends('admin.themeadmin')
 @section('navbar')
 
+
+{{-- <script src="{{ asset('admin-lte/plugins/jquery/jquery.min.js')}}"></script>
+
+<!-- jQuery UI 1.11.4 -->
+<script src="{{ asset('admin-lte/plugins/jquery-ui/jquery-ui.min.js') }}"></script> --}}
+
 <!-- Sidebar -->
 <div class="sidebar">
     <!-- Sidebar user panel (optional) -->

@@ -41,7 +41,7 @@ class Usercontroller extends Controller
         //$data['user'] = User::all();
 
         $data['user']  = DB::table('users')
-            ->select('*', DB::raw("(Select role_name from user_role where user_role.role_id=users.role) as role_name"))
+            ->select('*', DB::raw("(Select role_name from auth_user_role where auth_user_role.role_id=users.role) as role_name"))
             ->get();
        // echo "<pre>"; print_r($users); echo "</pre>";die();
         // dd($data);
@@ -70,10 +70,13 @@ class Usercontroller extends Controller
      */
     public function store(Request $request)
     {
-        
-        $imageloader = new imageloader();
-        $imgpath="profil";
-        $pathimage = $imageloader->saveimg($request,$imgpath);
+        if($request->file('image')){
+            $imageloader = new imageloader();
+            $imgpath = "profil";
+            $pathimage = $imageloader->uploadimage($request, $imgpath);
+
+        }
+        //dd($request);
 
         //dd($pathimage);
 
@@ -92,7 +95,7 @@ class Usercontroller extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'email_verified_at' => date("Y-m-d h:i:s"),
-            'image' => $pathimage,
+            'image' => isset($pathimage) ? $pathimage :'',
             'role' => $request->role,
             'created_by' => Auth::user()->name
         ]);
@@ -147,8 +150,10 @@ class Usercontroller extends Controller
         if($request->file('image')){
                 $imageloader = new imageloader();
                 $imgpath = "profil";
-                $pathimage = $imageloader->saveimg($request, $imgpath);
-                $pathimg = $pathimage;
+                $pathimage = $imageloader->uploadimage($request, $imgpath);
+                if ($pathimage['valid']) {
+                    $pathimg = $pathimage['path'];
+                }
         }
  
 

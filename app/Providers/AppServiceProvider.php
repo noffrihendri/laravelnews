@@ -31,8 +31,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer(
-            'admin.navbar',
-            'App\Http\ViewComposers\UserComposer'
+            'admin.navbar','App\Http\ViewComposers\UserComposer'
         );
 
        

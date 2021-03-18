@@ -37,11 +37,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-      // dd("halo");
+       //dd("halo");
       //  return $this->themeadmin();
         //$this->themeadmin();
       // return $this->coba();
-        return view('admin.navbar');
+        return view('home.content');
         //return view('admin.themeadmin');
     }
 

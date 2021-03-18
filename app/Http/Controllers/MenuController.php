@@ -71,8 +71,8 @@ class MenuController extends Controller
         //     ->orderBy('parentid', 'ASC')
         //     ->get()->toArray();
 
-        $arrData = DB::select("select *,COALESCE((SELECT title FROM menu as submenus
-                                 WHERE submenus.menu_id = menu.parentid),'PARENT') as parent from menu order by parentid asc");
+        $arrData = DB::select("select *,COALESCE((SELECT title FROM auth_menu as submenus
+                                 WHERE submenus.menu_id = auth_menu.parentid),'PARENT') as parent from auth_menu order by parentid asc");
 
         //dd($arrData);
         // $arrData = Menu::where($arrWhere)

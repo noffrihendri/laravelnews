@@ -33,21 +33,17 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-    crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  <script src="{{ asset('jquery/jquery-3.5.1.min.js') }}"></script>
 
-  <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+  {{-- s --}}
 
-  <script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
-  <script src="{{ asset('js/nicedit/nicEdit.js') }}"></script>
+  {{-- <script src="{{asset('jquery/jquery-ui/jquery-ui.min.js')}}"></script> --}}
 
+  {{-- <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script> --}}
+  {{-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> --}}
 
-  {{-- tagit --}}
-  <script src="{{ asset('js/Tagit/tagit.js') }}"></script>
-  <link rel="stylesheet" href="{{ asset('js/Tagit/css/tagit-dark-grey.css') }}">
-  <link rel="stylesheet" href="{{ asset('js/Tagit/css/jquery-ui-base-1.8.20.css') }}">
+  {{-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script> --}}
+
 
 
 
@@ -224,7 +220,10 @@
   <script src="{{ asset('admin-lte/plugins/jquery/jquery.min.js')}}"></script>
 
   <!-- jQuery UI 1.11.4 -->
-  <script src="{{ asset('admin-lte/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+  {{-- <script src="{{ asset('admin-lte/plugins/jquery-ui/jquery-ui.min.js') }}"></script> --}}
+
+  <script src="{{asset('jquery/jquery-ui-1.9.2.custom/jquery-ui-1.9.2.custom.min.js')}}" type="text/javascript">
+  </script>
   <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
   <script>
     $.widget.bridge('uibutton', $.ui.button)
@@ -271,6 +270,17 @@
   <script src="{{ asset('js/topindo.js') }}"></script>
 
   <!-- page script -->
+
+  {{-- tagit --}}
+  <script src="{{ asset('js/Tagit/tagit.js') }}"></script>
+  <link rel="stylesheet" href="{{ asset('js/Tagit/css/tagit-dark-grey.css') }}">
+  <link rel="stylesheet" href="{{ asset('js/Tagit/css/jquery-ui-base-1.8.20.css') }}">
+  <script type="text/javascript" src="{{url('tagit')}}"></script>
+
+
+
+  <script src="{{ asset('js/tinymce/tinymce.min.js') }}" type="text/javascript"></script>
+  <script src="{{ asset('js/nicedit/nicEdit.js') }}" type="text/javascript"></script>
 </body>
 
 </html>

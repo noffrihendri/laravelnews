@@ -43,6 +43,9 @@
             "database/seeds",
             "database/factories",
             "app/libraries"
+        ],
+        "files": [
+         "app/Helpers/My_helpers.php"
         ]
     
     },

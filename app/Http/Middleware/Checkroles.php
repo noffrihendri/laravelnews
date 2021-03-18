@@ -17,17 +17,20 @@ class Checkroles
      */
     public function handle($request, Closure $next,...$roles)
     {
-        // dd($request->User()->role);
         $user = Muser_role::find($request->User()->role);
-
-      // dd($user->role_name);
+        //dump($user);
+      // dd($roles);
         ///cek role yang masuk jika ada maka lanjutkan ketahap selanjutnya
         if(in_array($user->role_name,$roles)){
 
             return $next($request);
         }
+
+        if($user->role_name == 'guests'){
+            return redirect('/'); 
+        }
         abort(403, 'UPS!! Anda tidak mempunyai akses kesini');
-        //return redirect('/home');
+        //return redirect('/');
 
     }
 }

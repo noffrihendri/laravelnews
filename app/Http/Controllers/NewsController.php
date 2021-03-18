@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\libraries\converter;
+use App\libraries\Fimagemanager;
 use App\libraries\imageloader;
 use App\model\Mnews;
+use App\model\Mtagnews;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -19,7 +21,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        return view('admin.addnews');
+        return view('admin.news.addnews');
     }
 
     /**
@@ -32,6 +34,50 @@ class NewsController extends Controller
         //
     }
 
+
+    public function imagemanager($key = "", $paramId = "")
+    {
+
+       // dd('coba');
+        $fimagemanager = new Fimagemanager();
+        return $fimagemanager->getimagenamager($key, 'news', $paramId, array());
+    }
+
+    public function uploadimage(Request $request){
+
+ 
+        $response = [];
+        if ($request->file('image')) {
+            $imageloader = new imageloader();
+            $imgpath = "news";
+            $pathimage = $imageloader->uploadimage($request, $imgpath);
+
+          //  dd('off');
+            if ($pathimage['valid']) {
+                $pathimg = $pathimage['path'];
+                $response = [
+                    'valid' => true,
+                    'filename'=> $pathimage['filename'],
+                    'path' => url($pathimage['path']),
+                    'message' => 'berhasil'
+                ];
+            }else{
+                $response = [
+                    'valid' => false,
+                    'message' => $pathimage['message']
+                ];
+            }
+        }else{
+            $response = [
+                'valid' => false,
+                'message' => 'file tidak ada'
+            ];
+        }
+        echo json_encode($response); die();
+    }
+
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -40,17 +86,26 @@ class NewsController extends Controller
      */
     public function store(Request $request){
 
-        dd($request);
+        //dump($request);
         $pathimg="NULL";
+
+        $arrtag = explode(";",$request->tagit);
+
+        if ($request->file('image')) {
+            $imageloader = new imageloader();
+            $imgpath = "news";
+            $pathimage = $imageloader->uploadimage($request, $imgpath);
+            if ($pathimage['valid']) {
+                $pathimg = $pathimage['path'];
+            }
+            
+        }
+        
+
+     //  dd($arrtag);
         if($request->news_id == null){
             
-                if ($request->file('image')) {
-                    $imageloader = new imageloader();
-                    $imgpath = "profil";
-                    $pathimage = $imageloader->saveimg($request, $imgpath);
-                    $pathimg = $pathimage;
-                }
-        
+            
         
                 $arrdata = [
                     'news_title' => $request->title,
@@ -69,8 +124,21 @@ class NewsController extends Controller
                 ];
                 // dump($request);
                 // dd($arrdata);
-                Mnews::create($arrdata);
-        
+                $news = Mnews::create($arrdata);
+                $idnews = $news->news_id;
+
+               // dd($idnews);
+                foreach($arrtag as $tag){
+                    if($tag !==''){
+                    Mtagnews::create([
+                        'news_id' => $idnews,
+                        'tag' => $tag,
+                        'created_by' => Auth::User()->name,
+                        'updated_by' => ''
+                    ]);
+                    }
+                }
+             
                 return back()->with('success', 'created successfully!');
         }else{
             
@@ -92,17 +160,46 @@ class NewsController extends Controller
                 Mnews::where('news_id',$request->news_id)
                 ->update($arrdata);
 
+                $Mtagnews = Mtagnews::where('news_id', $request->news_id);
+                $Mtagnews->delete();
+
+                    foreach ($arrtag as $tag) {
+                        if ($tag !== '') {
+                            Mtagnews::create([
+                                'news_id' => $request->news_id,
+                                'tag' => $tag,
+                                'created_by' => Auth::User()->name,
+                                'updated_by' => ''
+                            ]);
+                        }
+                    }
+
                 return back()->with('success', 'updated successfully!');
         }
 
     }
 
     public function listnews(){
-        return view('admin.vnews');
+        return view('admin.news.vnews');
+    }
+
+    public function tagit()
+    {
+        $arrTag = array();
+        $lstag = Mtagnews::all();
+
+        foreach ($lstag as $objTag) {
+            array_push($arrTag, $objTag->tag);
+        }
+
+        echo "availableTags = " . json_encode($arrTag);
+        die();
     }
 
     public function newsdata()
     {
+        
+        $imageloader = new imageloader();
         $arrWhere = array();
         $arrOrder = array();
         $where = "";
@@ -166,7 +263,9 @@ class NewsController extends Controller
                     case "created_at":
                         array_push($arrValue, date("d-M-Y h:i", strtotime($objNews['created_at'])));
                         break;
-               
+                    case "news_img":
+                        array_push($arrValue, "<img width='100' height='100' src='" .$imageloader->fCheckImage($objNews['news_img'])."'>");
+                        break;
                     default:
 
                 array_push($arrValue, $arrNews[$strValue]);
@@ -215,7 +314,7 @@ class NewsController extends Controller
     {
         $data['data'] = Mnews::find($id);
       //  dd($data);
-        return view('admin.addnews',$data);
+        return view('admin.news.addnews',$data);
         //dd($data);
     }
 

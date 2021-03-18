@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Menu_role extends Model
 {
-    protected $table = 'role_menu';
+    protected $table = 'auth_menu_role';
 
     protected $fillable = [
         'id_role', 'id_menu', 'created_by','updated_by'

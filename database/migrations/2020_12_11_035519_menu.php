@@ -13,7 +13,7 @@ class Menu extends Migration
      */
     public function up()
     {
-        Schema::create('menu', function (Blueprint $table) {
+        Schema::create('auth_menu', function (Blueprint $table) {
             $table->bigIncrements('menu_id');
             $table->string('title', 255);
             $table->string('link', 255);

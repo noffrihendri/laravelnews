@@ -18,8 +18,9 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
+       //dd(Auth::guard($guard)->check()); 
         if (Auth::guard($guard)->check()) {
-            //var_dump(Auth::guard($guard));
+           // dd(Auth::guard($guard)->check()); 
             // dd(Auth::guard($guard)->check());
             return redirect(RouteServiceProvider::HOME);
             //return redirect('dahsboard');

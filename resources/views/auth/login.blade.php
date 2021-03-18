@@ -22,8 +22,6 @@
 </head>
 
 
-
-
 <style type="text/css">
   :root {
   --input-padding-x: 1.5rem;

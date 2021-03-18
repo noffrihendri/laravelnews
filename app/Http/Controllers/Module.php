@@ -151,6 +151,7 @@ class Module extends Controller
         // $mrole->where('role_id', $id)
         //     ->get()->getResult();
 
+ 
         $arrData['data'] = Muser_role::where('role_id',$id)->get()->toArray();
 
 

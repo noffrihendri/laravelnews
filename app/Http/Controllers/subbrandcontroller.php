@@ -102,9 +102,10 @@ class subbrandcontroller extends Controller
 
                foreach ($arrField as $strValue) {
                  switch ($strValue) {
-                   case "created_at":
-                       array_push($arrValue, date("d-M-Y h:i",strtotime($objNews->created_at)));
-                   break;
+                        case "created_at":
+                            array_push($arrValue, date("d-M-Y h:i",strtotime($objNews->created_at)));
+                        break;
+                        
                    default:
                    array_push($arrValue, $arrNews[$strValue]);
                }

@@ -13,7 +13,7 @@ class UserRole extends Migration
      */
     public function up()
     {
-        Schema::create('user_role', function (Blueprint $table) {
+        Schema::create('auth_user_role', function (Blueprint $table) {
             $table->id('role_id');
             $table->string('role_name');
             $table->string('is_active', 1);

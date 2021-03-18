@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\model\Muser_role;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
 
@@ -21,7 +22,10 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/home';
+
+
+   
+    public const HOME = '/dashboard';
 
     /**
      * Define your route model bindings, pattern filters, etc.

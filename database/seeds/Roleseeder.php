@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Mrole;
+use App\model\Muser_role;
 
 class Roleseeder extends Seeder
 {
@@ -14,21 +14,39 @@ class Roleseeder extends Seeder
     {
         $role = array(
             array(
-                'keterangan' =>'admin'
+                'role_name' =>'super admin',
+                'is_active' => 1,
+                'created_by' => '',
+                'updated_by' => ''
             ),
             array(
-                'keterangan' =>'owner'
+                'role_name' =>'owner',
+                'is_active' => 1,
+                'created_by' => '',
+                'updated_by' => ''
             ),
             array(
-                'keterangan' =>'operator'
+                'role_name' =>'operator',
+                'is_active' => 1,
+                'created_by' => '',
+                'updated_by' => ''
             ),        
             array(
-                'keterangan' =>'user'
+                'role_name' =>'user',
+                'is_active' => 1,
+                'created_by' => '',
+                'updated_by' => ''
+            ),
+            array(
+                'role_name' => 'guests',
+                'is_active' => 1,
+                'created_by' => '',
+                'updated_by' =>''
             ),
         );
 
         foreach ($role as $value) {
-            Mrole::create($value);
+            Muser_role::create($value);
         }
 
 
