@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\home;
 
 use App\Http\Controllers\Controller;
-use App\model\Mnews;
-use App\model\Mtagnews;
+use App\models\Mnews;
+use App\models\MnewsCategory;
+use App\models\Mtagnews;
 use Illuminate\Http\Request;
 use SebastianBergmann\CodeCoverage\Driver\Xdebug;
 
@@ -19,8 +20,10 @@ class Newspage extends Controller
     {
 
         $news = new Mnews();
-        $data['news'] = $news->all();
-       // dd($data);
+        $data['news'] = $news->paginate(3);
+
+        $data['newscategory'] = MnewsCategory::all();
+        //dd($data);
 
         return view('home.news',$data);
     }

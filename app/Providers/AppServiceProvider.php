@@ -6,11 +6,13 @@ use Illuminate\Support\ServiceProvider;
 use App\libraries\treeviewdata;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use App\model\User;
-use App\model\Menu;
+use App\models\User;
+use App\models\Menu;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
+
+use Illuminate\Support\Facades\Schema;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -33,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer(
             'admin.navbar','App\Http\ViewComposers\UserComposer'
         );
-
+        Schema::defaultStringLength(191);
        
     }
 }

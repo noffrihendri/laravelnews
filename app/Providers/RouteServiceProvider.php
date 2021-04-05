@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\model\Muser_role;
+use App\models\Muser_role;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
 

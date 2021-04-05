@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use App\model\User;
-use App\model\Menu;
+use App\models\User;
+use App\models\Menu;
 
 class Controller extends BaseController
 {

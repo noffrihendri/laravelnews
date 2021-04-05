@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 use Redirect; //untuk redirect
 
-use App\model\User;
+use App\models\User;
 use GuzzleHttp\Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -118,7 +118,7 @@ class AuthController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\model\User $user
+     * @param  \app\models\User $user
      * @return \Illuminate\Http\Response
      */
     public function show(User $user)
@@ -129,7 +129,7 @@ class AuthController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\model\User $user
+     * @param  \app\models\User $user
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
@@ -141,7 +141,7 @@ class AuthController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\model\User $user
+     * @param  \app\models\User $user
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)
@@ -152,7 +152,7 @@ class AuthController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\model\User $user
+     * @param  \app\models\User $user
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)

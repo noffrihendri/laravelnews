@@ -17,7 +17,7 @@
 
 <script>
   import { QrcodeStream, QrcodeDropZone, QrcodeCapture } from 'vue-qrcode-reader';
-  import Navbar from "./navbar.vue";
+  import Navbar from "./navbarold.vue";
   export default {
     name:'camera',
       components: {

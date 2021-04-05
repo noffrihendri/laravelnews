@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\model\Muser_role;
+use App\models\Muser_role;
 
 use Closure;
 

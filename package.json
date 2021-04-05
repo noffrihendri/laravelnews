@@ -25,6 +25,8 @@
     },
     "dependencies": {
         "bootstrap-vue": "^2.21.2",
+        "laravel-echo": "^1.10.0",
+        "pusher-js": "^7.0.3",
         "vue-axios": "^3.2.2",
         "vue-barcode-reader": "0.0.3",
         "vue-barcode-scanner": "^0.8.1",

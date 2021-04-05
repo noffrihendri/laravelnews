@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\libraries\converter;
 use App\libraries\Fimagemanager;
 use App\libraries\imageloader;
-use App\model\Mnews;
-use App\model\Mtagnews;
+use App\models\Mnews;
+use App\models\MnewsCategory;
+use App\models\Mtagnews;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -21,7 +22,11 @@ class NewsController extends Controller
      */
     public function index()
     {
-        return view('admin.news.addnews');
+     
+        $data['newscategory'] = MnewsCategory::all();
+        //dd($data);
+
+        return view('admin.news.addnews',$data);
     }
 
     /**
@@ -111,6 +116,7 @@ class NewsController extends Controller
                     'news_title' => $request->title,
                     'news_description'=> '',
                     'news_slug'=> Str::slug($request->title),
+                    'news_category_id' => $request->news_category,
                     'news_synopsys' => $request->synopsys,
                     'news_content' => $request->news_content,
                     'news_level' => $request->news_level,
@@ -148,6 +154,7 @@ class NewsController extends Controller
                     'news_slug'=> Str::slug($request->title),
                     'news_synopsys' => $request->synopsys,
                     'news_content' => $request->news_content,
+                'news_category_id' => $request->news_category,
                     'news_level' => $request->news_level,
                     'news_metatitle' => $request->meta_title,
                     'news_metadescription' => !empty($request->news_metadescription) ? $request->news_metadescription :'',
@@ -268,7 +275,7 @@ class NewsController extends Controller
                         break;
                     default:
 
-                array_push($arrValue, $arrNews[$strValue]);
+                         array_push($arrValue, $arrNews[$strValue]);
                     }
             }
 
@@ -313,6 +320,7 @@ class NewsController extends Controller
     public function edit($id)
     {
         $data['data'] = Mnews::find($id);
+        $data['newscategory'] = MnewsCategory::all();
       //  dd($data);
         return view('admin.news.addnews',$data);
         //dd($data);

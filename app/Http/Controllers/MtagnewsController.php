@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Mtagnews;
+use App\models\Mtagnews;
 use Illuminate\Http\Request;
 
 class MtagnewsController extends Controller

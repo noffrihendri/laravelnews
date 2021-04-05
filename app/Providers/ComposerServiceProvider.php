@@ -4,8 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use App\model\User;
-use App\model\Menu;
+use App\models\User;
+use App\models\Menu;
 use App\libraries\treeviewdata;
 use Illuminate\Support\Facades\Auth;
 

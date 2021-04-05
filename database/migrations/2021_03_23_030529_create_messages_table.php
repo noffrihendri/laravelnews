@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterBeritaTable extends Migration
+class CreateMessagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class AlterBeritaTable extends Migration
      */
     public function up()
     {
-        Schema::table('news', function (Blueprint $table) {
-            $table->text('news_img');
-            $table->string('is_active',1);
+        Schema::create('messages', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->text('message');
+            $table->timestamps();
         });
     }
 
@@ -26,8 +28,6 @@ class AlterBeritaTable extends Migration
      */
     public function down()
     {
-        Schema::table('news', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('messages');
     }
 }

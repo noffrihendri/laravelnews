@@ -7,7 +7,7 @@ use App\Submenu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use App\model\User;
+use App\models\User;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\DB;
 use PHPUnit\Framework\Constraint\FileExists;
@@ -76,7 +76,8 @@ class imageloader
         $path = public_path($url);
         
         $isExists = file_exists($path);
-        if($isExists){
+        
+        if($isExists && $url !==''){
             return url($url);
         }else{
             return url('image/noimage.jpg');

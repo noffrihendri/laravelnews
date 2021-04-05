@@ -1,6 +1,6 @@
 <?php
 
-namespace App\model;
+namespace App\models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -10,7 +10,7 @@ class Mnews extends Model
     protected $table = 'news';
 
     protected $fillable = [
-        'news_title', 'news_description', 'news_slug', 'news_synopsys','news_content','news_level','news_metatitle', 'news_metadescription', 'news_img', 'is_active','news_status', 'created_by', 'updated_by'
+        'news_title', 'news_category_id', 'news_description', 'news_slug', 'news_synopsys','news_content','news_level','news_metatitle', 'news_metadescription', 'news_img', 'is_active','news_status', 'created_by', 'updated_by'
     ];
 
     protected $primaryKey = 'news_id';

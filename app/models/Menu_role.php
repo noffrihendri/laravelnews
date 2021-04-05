@@ -1,19 +1,19 @@
 <?php
 
-namespace App\model;
+namespace App\models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Muser_role extends Model
+class Menu_role extends Model
 {
-    protected $table = "auth_user_role";
+    protected $table = 'auth_menu_role';
 
     protected $fillable = [
-        'role_name','is_active','created_by', 'updated_by'
+        'id_role', 'id_menu', 'created_by','updated_by'
     ];
 
     protected $primaryKey = 'role_id';
-   // protected $primarykey = 'role_id';
+    // protected $primarykey = 'role_id';
 
 
     protected $casts = [
@@ -21,5 +21,4 @@ class Muser_role extends Model
     ];
 
     public $timestamps = true;
-
 }

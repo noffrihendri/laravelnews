@@ -203,6 +203,9 @@
 
     <div class="body">
       @yield('content')
+
+
+
     </div>
 
 

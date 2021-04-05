@@ -3,7 +3,7 @@
 namespace App\Http\ViewComposers;
 
 use App\libraries\treeviewdata;
-use App\model\Menu;
+use App\models\Menu;
 use Illuminate\View\View;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;

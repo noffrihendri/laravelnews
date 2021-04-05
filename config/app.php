@@ -176,7 +176,7 @@ return [
         
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
+         App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
@@ -236,7 +236,7 @@ return [
         'converter' => App\libraries\converter::class, //tambahan libraries
         'imageloader' => App\libraries\imageloader::class, //tambahan libraries
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-
+        //'Pusher' => Pusher\Pusher::class,
     ],
 
 ];

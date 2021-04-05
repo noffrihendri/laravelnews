@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\libraries\converter;
-use app\models\Menu;
+use App\models\Mnews;
+use App\models\MnewsCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
-class MenuController extends Controller
+class NewsCategory extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,20 +17,18 @@ class MenuController extends Controller
      */
     public function index()
     {
-        $data['menu'] = Menu::where('parentid',0)->get();
-        //dd($data);
-        return view('admin.vmenu',$data);
+        return view('admin.news.newscategory');
     }
 
-
-    public function listdata(){
+    public function listdata()
+    {
 
         //echo "<pre>"; print_r("halo"); echo "</pre>";
 
         $arrWhere = array();
         $arrOrder = array();
         $where = "";
-        $arrField = array("title", "link","icon","parent");
+        $arrField = array("category", "created_by", "created_at");
 
         //Value From Datatables
         $intDraw = (int)$_GET['draw'];
@@ -58,36 +56,22 @@ class MenuController extends Controller
         //  echo "<pre>"; print_r($arrWhere); echo "</pre>";
         // echo "<pre>"; print_r($intOffset); echo "</pre>";
 
-        $iTotal = Menu::all();
+        $iTotal = MnewsCategory::all();
 
-        // $arrData = DB::table("menu")
-        //     ->select(
-        //         "menu.*",
-        //         DB::raw("(SELECT title FROM menu as submenus
-        //                         WHERE submenus.menu_id = menu.parentid) as parent")
-        //     )
-        //     ->offset($intOffset)
-        //     ->limit($intLimit)
-        //     ->orderBy('parentid', 'ASC')
-        //     ->get()->toArray();
+        $arrData = MnewsCategory::where($arrWhere)
+            ->offset($intOffset)
+            ->limit($intLimit)
+            ->orderBy('category_id', 'desc')
+            ->get()->toArray();
 
-        $arrData = DB::select("select *,COALESCE((SELECT title FROM auth_menu as submenus
-                                 WHERE submenus.menu_id = auth_menu.parentid),'PARENT') as parent from auth_menu order by parentid asc");
 
-        //dd($arrData);
-        // $arrData = Menu::where($arrWhere)
-        //     ->offset($intOffset)
-        //     ->limit($intLimit)
-        //     ->orderBy('parentid', 'ASC')
-        //     ->get()->toArray();
-
-        $intRows = Menu::where($arrWhere)
+        $intRows = MnewsCategory::where($arrWhere)
             ->count();
 
 
         $arrValue = array();
         $arrAll = array();
-
+        
         $convert = new converter();
 
 
@@ -98,15 +82,19 @@ class MenuController extends Controller
             $arrNews = $convert->objectToArray($objNews);
 
             foreach ($arrField as $strValue) {
-              
-       
+                switch ($strValue) {
+                    case "created_at":
+                        array_push($arrValue, date("d-M-Y h:i", strtotime($objNews['created_at'])));
+                        break;
+                    default:
+
                         array_push($arrValue, $arrNews[$strValue]);
-             
+                }
             }
 
             //Button
-            $strButton = "<a href=" . url('editmodule/' . $objNews->menu_id) . "><button class='btn btn-info' ><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button></a>";
-            $strButton .= "<a href=" . url('delmodule/' . $objNews->menu_id) . " onclick='return confirm(`Are you suru to delete?`)'><button class='btn btn-danger'><i class='fa fa-trash' aria-hidden='true'></i></button></a>";
+            $strButton = "<a href=" . url('editcategory/' . $objNews['category_id']) . "><button class='btn btn-info' ><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button></a>";
+            $strButton .= "<a href=" . url('deletecategory/' . $objNews['category_id']) . " onclick='return confirm(`Are you suru to delete?`)'><button class='btn btn-danger'><i class='fa fa-trash' aria-hidden='true'></i></button></a>";
             array_push($arrValue, $strButton);
 
             array_push($arrAll, $arrValue);
@@ -119,7 +107,6 @@ class MenuController extends Controller
         );
 
         return response()->json($output);
-
     }
 
     /**
@@ -140,33 +127,8 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-
-        if($request->menu_id !== null){
-            $brand = Menu::where('menu_id', $request->menu_id)
-                ->update([
-                'title' => $request->title,
-                'link' => ($request->link == null) ? '' : $request->link,
-                'icon' => ($request->icon == null) ? '' : $request->icon,
-                'parentid' => ($request->parent=='parent') ? 0 : $request->parent,
-                'updated_by' => Auth::user()->name,
-                'updated_at' => now(),
-                ]);
-             return back()->with('success', 'updated successfully!');
-        }else{
-
-            $arrdata = [
-                'title' => $request->title,
-                'link'=> ($request->link==null) ? '' : $request->link,
-                'icon' => ($request->icon==null) ? '' : $request->icon,
-                'parentid' => ($request->parent=='parent') ? 0 : $request->parent,
-                'created_by' => Auth::user()->name,
-                'updated_by' => ''
-            ];
-    
-            Menu::create($arrdata);
-            return back()->with('success', 'created successfully!');
-        }
-       // dd($request);
+        MnewsCategory::create(['category'=>$request->category,'created_by' => Auth::user()->name]);
+        return back()->with('success', 'created successfully!');
     }
 
     /**
@@ -188,9 +150,7 @@ class MenuController extends Controller
      */
     public function edit($id)
     {
-        $data['menu'] = Menu::where('parentid', 0)->get();
-        $data['data'] = Menu::find($id);
-        return view('admin.vmenu', $data);
+        //
     }
 
     /**
@@ -213,8 +173,9 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
-        $user = Menu::find($id);
-        $user->delete();
+       // dd($id);
+        $news = MnewsCategory::destroy($id);
+
         return back()->with('success', 'deleted successfully!');
     }
 }

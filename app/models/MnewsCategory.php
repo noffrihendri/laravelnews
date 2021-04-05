@@ -1,18 +1,18 @@
 <?php
 
-namespace App\model;
+namespace App\models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Mtagnews extends Model
+class MnewsCategory extends Model
 {
-    protected $table = 'news_tag';
+    protected $table = 'news_category';
 
     protected $fillable = [
-        'news_id','tag', 'created_by', 'updated_by'
+        'category', 'created_by' 
     ];
 
-    protected $primaryKey = 'tag_id';
+    protected $primaryKey = 'category_id';
     // protected $primarykey = 'role_id';
 
 

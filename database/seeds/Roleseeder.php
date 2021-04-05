@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\model\Muser_role;
+use app\models\Muser_role;
 
 class Roleseeder extends Seeder
 {

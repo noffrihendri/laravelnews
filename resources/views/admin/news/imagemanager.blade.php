@@ -18,13 +18,14 @@
 		var form = $('#formglobal');
 		var url = '{{ url ('') }} admin/<?php  echo $controler; ?>/removeImageContent';
 
-        console.log(data);
-        console.log(form);
+        // console.log(data);
+        // console.log(form);
 		 postData(data,url,form,function(is_json, data){
 			 if(data.valid){
+                 console.log('test disini');
 				 location.reload();
 			 }
-		 } );
+		 },true,true );
 	});
 	
 	$('#imgb').change(function(){

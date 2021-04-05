@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\libraries\treeviewdata;
-use App\model\Menu;
-use App\model\Menu_role;
-use App\model\Muser_role;
+use App\models\Menu;
+use App\models\Menu_role;
+use App\models\Muser_role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use UserRole;

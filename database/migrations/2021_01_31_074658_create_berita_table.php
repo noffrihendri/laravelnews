@@ -15,17 +15,20 @@ class CreateBeritaTable extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->id('news_id');
-            $table->string('news_title');
-            $table->string('news_descrtiption');
-            $table->string('news_slug');
-            $table->string('news_synopsys');
+            $table->string('news_title',255);
+            $table->string('news_description',255);
+            $table->string('news_category_id',4);
+            $table->string('news_slug',500);
+            $table->text('news_synopsys');
             $table->text('news_content');
             $table->string('news_level');
-            $table->string('news_metatitle');
-            $table->text('news_metadescription');
-            $table->string('news_status');
-            $table->string('created_by');
-            $table->string('updated_by');
+            $table->string('news_metatitle',255);
+            $table->text('news_metadescription',500);
+            $table->string('news_status',100);
+            $table->string('created_by',100);
+            $table->string('updated_by',100);
+            $table->text('news_img');
+            $table->string('is_active', 1);
             $table->timestamps();
         });
     }
@@ -37,8 +40,7 @@ class CreateBeritaTable extends Migration
      */
     public function down()
     {
-        Schema::table('news', function (Blueprint $table) {
-            //
-        });
+    
+        Schema::dropIfExists('news');
     }
 }

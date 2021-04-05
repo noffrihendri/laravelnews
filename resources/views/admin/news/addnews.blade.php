@@ -190,6 +190,29 @@ $imageloader = new imageloader();
                                     </div>
                                 </div>
                                 <div class="form-group row">
+                                    <label for="colFormLabel" class="col-sm-2 col-form-label">News category</label>
+                                    <div class="col-sm-3">
+                                        <select class="form-control" id="news_category" name="news_category">
+
+                                            @php
+                                            $selected="";
+                                            @endphp
+                                            @foreach ($newscategory as $category )
+                                            <?php
+                                                if (isset($data)){
+                                                    $selected=($data->news_category_id==$category->category_id) ? 'selected' :'';
+                                                }
+                                            ?>
+                                            <option value={{$category->category_id}} {{$selected}}>
+                                                {{$category->category}}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
                                     <label for="colFormLabel" class="col-sm-2 col-form-label">News Level</label>
                                     <div class="col-sm-3">
                                         <select class="form-control" id="status" name="news_level">
@@ -226,8 +249,9 @@ $imageloader = new imageloader();
 
                                     </div>
                                     <div class="col-sm-8">
-                                        <img src="{{$imageloader->fCheckImage($data->news_img) }}" alt="..."
-                                            class="img-thumbnail fa fa-user" style="height:200px;" id="imgItem">
+                                        <img src="{{$imageloader->fCheckImage(isset($data->news_img) ? $data->news_img:'') }}"
+                                            alt="..." class="img-thumbnail fa fa-user" style="height:200px;"
+                                            id="imgItem">
                                     </div>
                                 </div>
                                 <div class="form-group row">

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\model;
+namespace App\models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -43,5 +43,10 @@ class User extends Authenticatable
     ];
 
     public $timestamps = true;
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
     
 }

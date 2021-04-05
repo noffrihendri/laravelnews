@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Vue;
 
 use App\Http\Controllers\Controller;
-use App\model\User;
+use App\models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 

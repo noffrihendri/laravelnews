@@ -18,7 +18,6 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{{ asset('bootstrap-agency/css/styles.css') }} " rel="stylesheet" />
 
-    <script src="{{ asset('jquery/jquery-3.5.1.min.js') }}"></script>
 </head>
 
 <body id="page-top">
@@ -52,15 +51,25 @@
     <!-- Bootstrap core JS-->
 
 
+    <script src="{{ asset('jquery/jquery-3.5.1.min.js') }}"></script>
+    {{-- 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script> --}}
 
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <link href="{{ asset('bootstrap4/css/bootstrap.min.css') }} " rel="stylesheet" type="text/css" />
+
+
     <!-- Third party plugin JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+
     <!-- Contact form JS-->
     <script src="{{ asset('bootstrap-agency/assets/mail/jqBootstrapValidation.js')  }} "></script>
     <script src="{{ asset('bootstrap-agency/assets/mail/contact_me.js') }}"></script>
     <!-- Core theme JS-->
     <script src="{{ asset('bootstrap-agency/js/scripts.js')}}  "></script>
+
+
 </body>
 
 </html>

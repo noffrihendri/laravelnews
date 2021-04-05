@@ -4,7 +4,7 @@ function postData(objParam,url,objForm,fSuccess,fBefore, loading){
                 if(typeof(objParam)=='undefined') objParam={};
                 if(typeof(url)=='undefined') url=objForm.attr('action');
                 if(typeof(objForm)=='undefined') objForm=$('#formglobal');
-    			var imageloading = location.protocol + '//' + location.host+'/'+'style/images/load.gif';
+    			var imageloading = location.protocol + '//' + location.host+'/'+'image/loading.gif';
 	
 		
 	//if(typeof(url)=='undefined'){
@@ -91,7 +91,7 @@ function postData(objParam,url,objForm,fSuccess,fBefore, loading){
 						
                     },
                     error:function(){
-												var intTimeOut = 1000;
+						var intTimeOut = 1000;
 
 						setTimeout(function(){
 								$('body').find('.bckdr').remove();

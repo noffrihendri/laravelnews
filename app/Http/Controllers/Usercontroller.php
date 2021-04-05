@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\libraries\imageloader;
-use App\model\Menu;
-use App\model\Muser_role;
-use app\model\User;
+use App\models\Menu;
+use App\models\Muser_role;
+use App\models\User;
 use Carbon\Traits\Timestamp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;

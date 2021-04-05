@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Mbrand;
-use App\Msubbrand;
+use App\models\Mbrand;
+use App\models\Msubbrand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;

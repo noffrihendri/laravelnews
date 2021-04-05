@@ -85,9 +85,22 @@ Route::group(['middleware' => ['auth'] ], function () {
 
                 Route::get('news/imagemanager', 'NewsController@imagemanager');
                 Route::post('news/uploadimage', 'NewsController@uploadimage');
+
+                Route::get('newscategory', 'NewsCategory@index');
+                Route::get('newscategory/listdata', 'NewsCategory@listdata');
+                Route::post('newscategory/created', 'NewsCategory@store');
+                Route::get('/editcategory/{id}', 'NewsCategory@edit');
+                Route::get('/deletecategory/{id}', 'NewsCategory@destroy');
     });
 
 });
+
+Route::group(['middleware' => 'auth'], function () {
+        Route::get('chat', 'ChatController@index');
+        Route::get('messages', 'ChatController@getMessages');
+        Route::post('messages', 'ChatController@broadcastMessage');
+});
+
 
 Route::get('wrt', 'WrtCamera@index');
 Route::post('wrt', 'WrtCamera@uploadimg');
