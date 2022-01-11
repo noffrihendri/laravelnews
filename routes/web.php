@@ -29,6 +29,7 @@ Route::get('/vue', 'HomeController@coba');
 Route::prefix('/news')->group(function () {
         Route::get('', 'home\Newspage@index');
         Route::get('/detail/{id}', 'home\Newspage@show');
+        Route::get('/category/{category}', 'home\Newspage@index');
        
 });
 

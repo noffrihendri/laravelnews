@@ -45,7 +45,7 @@ use App\libraries\imageloader;
                     </h3>
 
                     @foreach ($newscategory as $category )
-                    <a href="" class="list-group-item list-group-item-action">{{$category->category}}</a>
+                    <a href="{{ url('news/category/'.$category->category) }}" class="list-group-item list-group-item-action">{{$category->category}}</a>
                     @endforeach
 
 

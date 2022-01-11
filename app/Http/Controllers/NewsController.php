@@ -126,7 +126,8 @@ class NewsController extends Controller
                     'created_by' => Auth::User()->name,
                     'updated_by' =>'',
                     'news_img' => $pathimg,
-                    'is_active' => $request->status
+                    'is_active' => $request->status,
+                    'publish_date' => $request->publish_date
                 ];
                 // dump($request);
                 // dd($arrdata);
@@ -161,7 +162,8 @@ class NewsController extends Controller
                     'news_status' => $request->news_type,
                     'updated_by' => Auth::User()->name,
                     'news_img' => $pathimg,
-                    'is_active' => $request->status
+                    'is_active' => $request->status,
+                    'publish_date' => $request->publish_date
                 ];
 
                 Mnews::where('news_id',$request->news_id)

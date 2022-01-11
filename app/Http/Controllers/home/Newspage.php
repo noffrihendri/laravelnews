@@ -16,17 +16,32 @@ class Newspage extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($category ="")
     {
-
         $news = new Mnews();
-        $data['news'] = $news->paginate(3);
+
+        $data['news']='';
+        if($category !==""){
+            $category = MnewsCategory::where('category',$category)->first();
+            
+
+            $data['news'] = $news->where('news_category_id',$category->category_id)
+            ->paginate(3);
+             //                   xDebug($data);die();
+        }else{
+            $data['news'] = $news->paginate(3);
+        }
+
+    
+       
 
         $data['newscategory'] = MnewsCategory::all();
-        //dd($data);
+
+       //dd($data);
 
         return view('home.news',$data);
     }
+
 
     /**
      * Show the form for creating a new resource.

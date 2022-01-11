@@ -6,6 +6,8 @@
 
 use App\libraries\imageloader;
 $imageloader = new imageloader();
+
+// dd($data);
 ?>
 
 <head>
@@ -231,7 +233,7 @@ $imageloader = new imageloader();
                                                     $selected=($data->news_level==$key) ? 'selected' :'';
                                                 }
                                                 ?>
-                                            <option value={{$key}} {{$selected}}>{{$item}}</option>
+                                            <option value="<?=$key?>" <?=$selected?> > <?=$item?></option>
                                             <?php } ?>
                                         </select>
                                     </div>
@@ -322,6 +324,14 @@ $imageloader = new imageloader();
                                         </select>
                                     </div>
                                 </div>
+                                <div class="form-group row">
+                                    <label for="colFormLabel" class="col-sm-2 col-form-label">Publish Date</label>
+                                    <div class="col-sm-3">
+                                    <input type="date" name="publish_date" class="form-control"
+                                            value="{{ isset($data) ? date('Y-m-d',strtotime($data->publish_date)):''}}">
+                                    </div>
+                                </div>
+
 
 
 
